@@ -1,0 +1,21 @@
+{
+  "reserve": {
+    "turns": 1
+  },
+  "budget": {
+    "contextTokens": 100000,
+    "softRatio": 0.6,
+    "hardRatio": 0.9,
+    "minSavingsTokens": 100
+  },
+  "screeners": {
+    "staleOutput": { "turns": 2 },
+    "repeatedCall": { "enabled": true },
+    "failedCall": { "turns": 0, "errorKeepChars": 200 },
+    "oversizedBlock": { "capChars": 400, "headChars": 120, "tailChars": 60 },
+    "staleReasoning": { "keepTurns": 1, "maxBlockChars": 200 }
+  },
+  "exempt": {
+    "tools": ["task", "skill", "todowrite", "todoread", "write", "edit", "batch"]
+  }
+}
