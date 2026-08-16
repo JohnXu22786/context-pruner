@@ -1,3 +1,5 @@
+[English](README.en.md)
+
 # dsh-context-triage
 
 会话上下文分诊插件，为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（dsh）自动管理长会话的上下文体积：识别并处理过期、重复、失败、超大与低价值的消息内容，节约 token 预算，缓解上下文膨胀。
@@ -22,6 +24,12 @@
 ## 安装与挂载
 
 插件以 **bundle** 形态分发：`package.json` 的 `dsh.bundle.patch` 指向 `cordis.patch.yml`（补丁内容为插入插件行，配置项可整行覆盖）。
+
+### 在 DSH 中安装
+
+```bash
+dsh plugin --profile demo add github:JohnXu22786/context-pruner
+```
 
 方式一（本地目录挂载，推荐）：
 
@@ -146,3 +154,7 @@ node lib/cli/replay.js examples/session.sample.jsonl --config examples/demo.conf
 - **改写必有净节省**：归档摘要、失败桩、裁剪三者都在动作前比较改写前后规模，不划算的发现被自动放弃；调用对动作以原子组整体判定，不会出现"摘要留下、结果被拆"的半吊子状态。
 - **提示缓存**：压缩会改变消息序列，使该点之后的提示缓存前缀失效。长会话中节省的 token 通常远大于缓存重算成本；对按请求计费的提供商（无缓存计费）则只有收益。
 - **不碰用户输入**：超长块筛查只作用于工具结果；用户消息除非被整体保留区覆盖，否则永不被改写。
+
+## 许可
+
+本项目基于 [MIT](LICENSE) 许可开源。
